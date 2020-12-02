@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const designerSchema = new Schema({
+const userSchema = new Schema({
     name: String,
     googleId: {
         type: String,
@@ -13,4 +13,4 @@ const designerSchema = new Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('User', designerSchema)
+module.exports = mongoose.model('User', userSchema)
