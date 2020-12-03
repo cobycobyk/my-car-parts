@@ -9,8 +9,17 @@ const userSchema = new Schema({
     },
     email: String,
     avatar: String,
+    nickname: String,
+    bio: String,
+    socials: String,
+    favorites: {
+        type: Schema.Types.ObjectId,
+        ref: 'design'
+    }
 }, {
     timestamps: true
 });
+
+
 
 module.exports = mongoose.model('User', userSchema)

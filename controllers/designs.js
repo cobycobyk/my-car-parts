@@ -8,8 +8,7 @@ module.exports = {
 };
 
 function index(req, res) {
-    let user = req.user
-    res.render('designs/index', {title: 'Home', user})
+    res.render('designs/index', {title: 'Home', user: req.user})
 }
 
 function newDesign(req, res) {
