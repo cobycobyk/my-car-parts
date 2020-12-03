@@ -16,7 +16,6 @@ function newDesign(req, res) {
 };
 
 function show(req, res) {
-
 };
 
 function create(req, res) {
