@@ -1,0 +1,12 @@
+<container class="profileCard">
+    <div class="userProfileAvatar"><img src="<%= user.avatar %>" alt="Avatar"></div>
+    <div class="userProfileName"><%= user.name %></div>
+    <div class="userProfileNickname"><%= user.nickname %></div>
+    <div class="userProfileInstagram"><a href="/users/<%= user.id %>"><img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c521.png" alt="Instagram"></a></div>
+    <div class="userProfileBio"><%= user.bio %></div>
+</container>
+<container class="userProfileHeader">
+    <a class="userProfileFavorites" href="/users/<%= user.id %>/favorites">Favorites</a>
+    <a class="userProfileDesigns" href="/users/<%= user.id %>">Designs</a>
+    <a class="userProfileCars" href="/users/<%= user.id %>/cars">Cars</a>
+</container>

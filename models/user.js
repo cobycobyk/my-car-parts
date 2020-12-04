@@ -11,11 +11,15 @@ const userSchema = new Schema({
     avatar: String,
     nickname: String,
     bio: String,
-    socials: String,
+    instagram: String,
     favorites: {
         type: Schema.Types.ObjectId,
-        ref: 'design'
-    }
+        ref: 'Design'
+    },
+    myCars: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Car',
+    }],
 }, {
     timestamps: true
 });
