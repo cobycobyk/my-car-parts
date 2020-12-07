@@ -20,7 +20,7 @@ function show(req, res) {
         .populate('designs')
         .exec(function(err, user) {
             Design
-                .find({_id: {$nin: user.designs}})
+                .find({designer: {$nin: user.designs}})
                 .exec(function(err, designs) {
                     res.render(`users/show`, {title: 'Profile', user, designs});
                 });

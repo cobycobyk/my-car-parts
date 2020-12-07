@@ -22,6 +22,7 @@ function newDesign(req, res) {
 
 function show(req, res) {
     Design.findById(req.params.id, function(err, design) {
+        //if (user._id =)
         res.render(`designs/show`, {title: 'Part', design})
     })
 };
