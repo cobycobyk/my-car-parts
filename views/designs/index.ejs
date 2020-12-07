@@ -1,5 +1,18 @@
 <%- include('../partials/header') %>
 
-<h2>designs index</h2>
-
+<container class="DesignsIndex">
+<% designs.forEach(function(d) { %>
+  <div class="onePart">
+    <div class="onePartImage"><img src="<%= d.images %>" alt="Part Image"></div>
+    <div><a href="/designs/<%= d._id %>"><%= d.title %></a></div>
+    <div><%= d.category %></div>
+    <div><a href="/users/<%= d.designer %>"><%= d.designer %></a></div>
+    <% let numFavorites = d.favorites.length %>
+    <div><%= numFavorites %></div>
+    <% let numComments = d.comments.length%>
+    <div><%= numComments %></div>
+  </div>
+  <% }); %>
+</container>
+  
 <%- include('../partials/footer') %>

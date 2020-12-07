@@ -1,0 +1,8 @@
+<%- include('../partials/header') %>
+
+<form action="/designs/<%= design._id %>?_method=DELETE" method="POST">
+  <button type="submit">Delete</button>
+</form>
+<a href="/designs">Cancel</a>
+
+<%- include('../partials/footer') %>

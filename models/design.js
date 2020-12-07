@@ -33,7 +33,10 @@ const designSchema = new Schema({
         enum: ['Replacement Part', 'Modification', 'Upgrade']
     },
     instructions: String,
-    images: String,
+    images: {
+        type: String,
+        default: 'https://i.imgur.com/G1aC71Z.jpg'
+    },
     license: {
         type: String,
         enum: ['Creative Commons - Attribution', 'Creative Commons - Attribution - Share Alike', 'Creative Commons - Attribution - No Derivatives', 'Creative Commons - Attribution - Non-Commercial', 'Creative Commons - Public Domain Dedication'],
@@ -46,6 +49,10 @@ const designSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Car'
     }],
+    designer: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 }, {
     timestamps: true
 });

@@ -1,5 +1,25 @@
 <%- include('../partials/header') %>
 
-<h2>designs new</h2>
+<form id="new-design" action="/designs" method="POST">
+    <label>Part Name (required)</label>
+    <input type="text" name="title"> 
+    <label>Category</label>
+    <select name="category">
+        <option value="Replacement Part">Replacement Part</option>
+        <option value="Modification">Modification</option>
+        <option value="Upgrade">Upgrade</option>
+    </select>
+    <label>Instructions</label>
+    <input type="text" name="instructions">
+    <label>License (required)</label>
+    <select name="license">
+        <option value="Creative Commons - Attribution">Creative Commons - Attribution</option>
+        <option value="Creative Commons - Attribution - Share Alike">Creative Commons - Attribution - Share Alike</option>
+        <option value="Creative Commons - Attribution - No Derivatives">Creative Commons - Attribution - No Derivatives</option>
+        <option value="Creative Commons - Attribution - Non-Commercial">Creative Commons - Attribution - Non-Commercial</option>
+        <option value="Creative Commons - Public Domain Dedication">Creative Commons - Public Domain Dedication</option>
+    </select>
+    <input type="submit" value="Add Design">
+  </form>
 
 <%- include('../partials/footer') %>

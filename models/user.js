@@ -20,6 +20,10 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Car',
     }],
+    designs: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Design'
+    }]
 }, {
     timestamps: true
 });

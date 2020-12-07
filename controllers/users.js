@@ -1,6 +1,9 @@
 const User = require('../models/user');
+const Design = require('../models/design');
+const user = require('../models/user');
 
 module.exports = {
+    index,
     show,
     favorite,
     cars,
@@ -8,10 +11,20 @@ module.exports = {
     update,
 };
 
+function index(req, res) {
+    res.redirect(`/users/show`);
+}
+
 function show(req, res) {
-    User.findById(req.user._id, function(err, user) {
-        res.render(`users/show`, {title: 'Profile', user});
-    });
+    User.findById(req.user._id) 
+        .populate('designs')
+        .exec(function(err, user) {
+            Design
+                .find({_id: {$nin: user.designs}})
+                .exec(function(err, designs) {
+                    res.render(`users/show`, {title: 'Profile', user, designs});
+                });
+        });
 };
 function favorite(req, res) {
     User.findById(req.user._id, function(err, user) {
