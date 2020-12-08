@@ -1,4 +1,5 @@
 const Design = require('../models/design');
+const User = require('../models/user')
 
 module.exports = {
     index,
@@ -11,8 +12,8 @@ module.exports = {
 };
 
 function index(req, res) {
-    Design.find({}, function(err, designs) {
-        res.render('designs/index', {title: 'Home', user: req.user, designs})
+    Design.find({}, function(err, design) {
+        res.render('designs/index', {title: 'Home', design})
     })
 }
 
@@ -21,9 +22,16 @@ function newDesign(req, res) {
 };
 
 function show(req, res) {
-    Design.findById(req.params.id, function(err, design) {
-        //if (user._id =)
-        res.render(`designs/show`, {title: 'Part', design})
+    User.findById(req.user._id, function(err, user) {
+    Design.findById(req.params.id)
+        .populate('designer')
+        .exec(function(err, design) {
+            User
+                .find({_id: design.designer})
+                .exec(function(err, designer) {
+                    res.render(`designs/show`, {title: 'Design', user, designer, design})
+                })
+            })
     })
 };
 

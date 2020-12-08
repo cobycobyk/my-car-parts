@@ -35,7 +35,7 @@ const designSchema = new Schema({
     instructions: String,
     images: {
         type: String,
-        default: 'https://i.imgur.com/G1aC71Z.jpg'
+        default: 'https://i.imgur.com/G1aC71Z.jpg',
     },
     license: {
         type: String,

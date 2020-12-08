@@ -5,10 +5,6 @@ const carSchema = new Schema({
     year: Number,
     make: String,
     model: String,
-    designs: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Design',
-    }],
 }, {
     timestamps: true,
 });

@@ -1,6 +1,5 @@
 const User = require('../models/user');
 const Design = require('../models/design');
-const user = require('../models/user');
 
 module.exports = {
     index,
@@ -10,30 +9,35 @@ module.exports = {
     edit,
     update,
 };
-
+ 
 function index(req, res) {
     res.redirect(`/users/show`);
 }
 
 function show(req, res) {
-    User.findById(req.user._id) 
-        .populate('designs')
-        .exec(function(err, user) {
+    User.findById(req.user._id, function(err, user) {
+        if (err) return res.redirect('/design');
+        User.findById(req.params.id, function(err, designer) { 
             Design
-                .find({designer: {$nin: user.designs}})
+                .find({designer: req.params.id})
                 .exec(function(err, designs) {
-                    res.render(`users/show`, {title: 'Profile', user, designs});
-                });
-        });
+                    res.render(`users/show`, {title: 'Profile', user, designer, designs});
+                    });
+            });
+    });
 };
 function favorite(req, res) {
     User.findById(req.user._id, function(err, user) {
-        res.render(`users/favorites`, {title: 'Profile', user});
+        User.findById(req.params.id, function(err, designer) {
+            res.render(`users/favorites`, {title: 'Profile', user, designer});
+        })
     });
 };
 function cars(req, res) {
     User.findById(req.user._id, function(err, user) {
-        res.render(`users/cars`, {title: 'Profile', user});
+        User.findById(req.params.id, function(err, designer) {
+            res.render(`users/cars`, {title: 'Profile', user, designer});
+        })
     });
 };
 

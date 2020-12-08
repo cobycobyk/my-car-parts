@@ -1,16 +1,68 @@
 <%- include('../partials/header') %>
 
 <container class="showDesign"> 
-  <div><img src="<%= design.images %>" alt="Design Image"></div>
-  <div><%= design.title %></div>
-  <div><%= design.title %></div>
-  <div><%= design.title %></div>
-  <div><%= design.title %></div>
-  <div><%= design.title %></div>
-  <div><%= design.title %></div>
-  <div><%= design.title %></div>
-  <a href="/designs/<%= design._id %>/edit">Edit Part</a>
+  <div class="partShowHeader">
+    <a class="partShowAvatar" href="/users/<%= designer[0]._id %>"><img src="<%= designer[0].avatar %>" alt="Designer Avatar"></a>
+    <div class="partShowHeaderMade">
+      <div class="partShowHeaderTitle"><%= design.title %></div><br>
+      <div class="partShowHeaderName">by <%= designer[0].name %> on <%= design.createdAt.toLocaleDateString() %></div>
+    </div>
+  </div>
+  <% if (design.designer.equals(user._id)) {%>
+  <a class="editPart" href="/designs/<%= design._id %>/edit">Edit Part</a>
+  <% } %>
+  <div class="designHero"><img class="designHero" src="<%= design.images %>" alt="Design Image"></div>
+  <div class="showDesignFavoriteDownload">
+    <div> <a href="">Favorite</a><a href="">Download</a></div>
+  </div>
+
 </container>
+<container class="showDesignAbout"> 
+  <div>About
+  <div><%= design.instructions %></div>
+  <div><%= design.license %></div>
+  </div>
+</container>
+<br><br>
+<div class="commentsSection">
+  <%if (user) {%>
+  <form id="add-comment-form" method="POST" action="/designs/<%= design._id %>/comments">
+    <label>Comments</label>
+    <textarea name="content"></textarea>
+    <input type="submit" value="Add Comment">
+  </form>
+  <%} else {%>
+    <h4>Please Login to submit a comment</h4>
+  <%}%>
+  <% if (design.comments.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% design.comments.forEach(function(c) { %>
+          <tr>
+            <td class="comment-user"><img src="<%= c.userAvatar %>" alt="Avatar"><%= c.userName %></td>
+            <td><%= c.createdAt.toLocaleDateString() %></td>
+            <td><%= c.content %></td>
+            <td>
+              <% if (user && user._id.equals(c.user)) { %>
+                <form action="/designs/<%= c._id %>?_method=DELETE" method="POST">
+                  <button type="submit">X</button>
+                </form>
+              <% } %>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h5>No Comments Yet</h5>
+  <% } %>
+</div>
 
 
 <%- include('../partials/footer') %>

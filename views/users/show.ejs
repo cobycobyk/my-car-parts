@@ -8,7 +8,7 @@
     <div><a href="/designs/<%= d._id %>"><%= d.title %></a></div>
     <div><%= d.category %></div>
     <div><a href="/users/<%= d.designer %>"><%= d.designer %></a></div>
-    <div><%= user.nickname %></div>
+    <div><%= designer.name %></div>
     <% let numFavorites = d.favorites.length %>
     <div><%= numFavorites %></div>
     <% let numComments = d.comments.length%>
