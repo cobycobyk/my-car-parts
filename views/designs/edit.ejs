@@ -1,8 +1,29 @@
 <%- include('../partials/header') %>
 
-<form action="/designs/<%= design._id %>?_method=DELETE" method="POST">
-  <button type="submit">Delete</button>
+<form action="/designs/<%= design._id %>?_method=PUT" method="POST">
+  <label>Part Name (required)</label>
+  <input type="text" name="title" value="<%= design.title %>"> 
+  <label>Category</label>
+  <select name="category" value="<%= design.category %>">
+    <option value="Replacement Part">Replacement Part</option>
+    <option value="Modification">Modification</option>
+    <option value="Upgrade">Upgrade</option>
+  </select>
+  <label>Instructions</label>
+  <input type="text" name="instructions" value="<%= design.instructions %>">
+  <label>License (required)</label>
+  <select name="license" value="<%= design.license %>">
+    <option value="Creative Commons - Attribution">Creative Commons - Attribution</option>
+    <option value="Creative Commons - Attribution - Share Alike">Creative Commons - Attribution - Share Alike</option>
+    <option value="Creative Commons - Attribution - No Derivatives">Creative Commons - Attribution - No Derivatives</option>
+    <option value="Creative Commons - Attribution - Non-Commercial">Creative Commons - Attribution - Non-Commercial</option>
+    <option value="Creative Commons - Public Domain Dedication">Creative Commons - Public Domain Dedication</option>
+  </select>
+  <button type="submit">Save Design</button>
 </form>
 <a href="/designs">Cancel</a>
+<form class="deleteDesign" action="/designs/<%= design._id %>?_method=DELETE" method="POST">
+  <button type="submit">Delete</button>
+</form>
 
 <%- include('../partials/footer') %>

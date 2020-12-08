@@ -21,8 +21,11 @@ body > nav {
   justify-content: flex-end;
   align-items: center;
   padding: 0 20px 0 30px;
+  color: white;
 }
-
+nav > p {
+  margin: 0 auto;
+}
 .navhome {
   margin-right: auto;
 }
