@@ -360,3 +360,10 @@ footer {
   height: 3rem;
   background-color: #e65355;
 }
+.commentAvatar {
+  border-radius: 50%;
+
+}
+.comment-user {
+  padding: 5px;
+}

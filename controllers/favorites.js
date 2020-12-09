@@ -7,7 +7,7 @@ module.exports = {
 
 function create(req, res) {
     Design.findById(req.params.id, function (err, design) {
-        req.body.userId = req.user._id;
+        req.body.user = req.user._id;
         design.favorites.push(req.body);
         design.save(function (err) {
             res.redirect(`/designs/${design._id}`)

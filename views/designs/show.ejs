@@ -18,9 +18,13 @@
         <button type="submit"><img src="https://i.imgur.com/rZ2yCNk.png" alt="Not Liked Favorite"></button>
       </form>
     <% } else if (user && design.favorites.some(f => f.user = user._id)) { %>
-      <form id="favorite-design" action="/favorites/<%= design.favorites._id %>?_method=DELETE" method="POST">
-        <button><img src="https://i.imgur.com/o2AESpn.png" alt="Liked Favorite"></button>
-      </form>
+      <% design.favorites.forEach(function(f) { %>
+        <% if (f.user === user._id) { %>
+          <form id="favorite-design" action="/favorites/<%= f._id %>?_method=DELETE" method="POST">
+            <button type="submit"><img src="https://i.imgur.com/o2AESpn.png" alt="Liked Favorite"></button>
+          </form>
+          <% } %>
+      <% }) %>
     <% } else { %>
       <img src="https://i.imgur.com/o2AESpn.png" alt="Liked Favorite">
     <% } %>
@@ -56,13 +60,13 @@
       <tbody>
         <% design.comments.forEach(function(c) { %>
           <tr>
-            <td class="comment-user"><img src="<%= c.userAvatar %>" alt="Avatar"><%= c.userName %></td>
+            <td class="comment-user"><img class="commentAvatar" src="<%= c.userAvatar %>" alt="Avatar"><%= c.userName %></td>
             <td><%= c.createdAt.toLocaleDateString() %></td>
             <td><%= c.content %></td>
             <td>
               <% if (user && user._id.equals(c.user)) { %>
                 <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
-                  <button type="submit">X</button>
+                  <button type="submit">Delete</button>
                 </form>
               <% } %>
             </td>
