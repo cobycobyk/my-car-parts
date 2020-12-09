@@ -17,8 +17,8 @@
     7. OAuth
 
 ### Geting Started:
-[Browse The Site!](https://my-car-parts.herokuapp.com/designs)
-[Check the Trello Planning](https://trello.com/b/KbgXXjLS/mycarparts)
+* [Browse The Site!](https://my-car-parts.herokuapp.com/designs)
+* [Check the Trello Planning](https://trello.com/b/KbgXXjLS/mycarparts)
 
 ##### Planned Next Steps:
 * The ability to call on a car database API and pull all car models
