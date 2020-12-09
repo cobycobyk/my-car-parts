@@ -13,13 +13,13 @@
   <% } %>
   <div class="designHero"><img class="designHero" src="<%= design.images %>" alt="Design Image"></div>
   <div class="showDesignFavoriteDownload">
-    <% if (user && !design.favorites.some(f => f.user = user._id)) { %>
+    <% if (user && !design.favorites.some(f => f.user.equals(user._id))) { %>
       <form id="favorite-design" action="/designs/<%= design._id %>/favorites" method="POST">
         <button type="submit"><img src="https://i.imgur.com/rZ2yCNk.png" alt="Not Liked Favorite"></button>
       </form>
-    <% } else if (user && design.favorites.some(f => f.user = user._id)) { %>
+    <% } else if (user && design.favorites.some(f => f.user.equals(user._id))) { %>
       <% design.favorites.forEach(function(f) { %>
-        <% if (f.user === user._id) { %>
+        <% if (f.user.equals(user._id)) { %>
           <form id="favorite-design" action="/favorites/<%= f._id %>?_method=DELETE" method="POST">
             <button type="submit"><img src="https://i.imgur.com/o2AESpn.png" alt="Liked Favorite"></button>
           </form>
