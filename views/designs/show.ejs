@@ -2,30 +2,41 @@
 
 <container class="showDesign"> 
   <div class="partShowHeader">
-    <a class="partShowAvatar" href="/users/<%= designer[0]._id %>"><img src="<%= designer[0].avatar %>" alt="Designer Avatar"></a>
+    <a class="partShowAvatar" href="/users/<%= design.designer._id %>"><img src="<%= design.designer.avatar %>" alt="Designer Avatar"></a>
     <div class="partShowHeaderMade">
       <div class="partShowHeaderTitle"><%= design.title %></div><br>
-      <div class="partShowHeaderName">by <%= designer[0].name %> on <%= design.createdAt.toLocaleDateString() %></div>
+      <div class="partShowHeaderName">by <%= design.designer.name %> on <%= design.createdAt.toLocaleDateString() %></div>
     </div>
   </div>
-  <% if (design.designer.equals(user._id)) {%>
-  <a class="editPart" href="/designs/<%= design._id %>/edit">Edit Part</a>
+  <% if (user && design.designer._id.equals(user._id)) {%>
+    <a class="editPart" href="/designs/<%= design._id %>/edit">Edit Part</a>
   <% } %>
   <div class="designHero"><img class="designHero" src="<%= design.images %>" alt="Design Image"></div>
   <div class="showDesignFavoriteDownload">
-    <div> <a href="">Favorite</a><a href="">Download</a></div>
+    <% if (user && !design.favorites.some(f => f.user = user._id)) { %>
+      <form id="favorite-design" action="/designs/<%= design._id %>/favorites" method="POST">
+        <button type="submit"><img src="https://i.imgur.com/rZ2yCNk.png" alt="Not Liked Favorite"></button>
+      </form>
+    <% } else if (user && design.favorites.some(f => f.user = user._id)) { %>
+      <form id="favorite-design" action="/favorites/<%= design.favorites._id %>?_method=DELETE" method="POST">
+        <button><img src="https://i.imgur.com/o2AESpn.png" alt="Liked Favorite"></button>
+      </form>
+    <% } else { %>
+      <img src="https://i.imgur.com/o2AESpn.png" alt="Liked Favorite">
+    <% } %>
+    <div><%= design.favorites.length %></div>
   </div>
 
 </container>
 <container class="showDesignAbout"> 
   <div>About
-  <div><%= design.instructions %></div>
-  <div><%= design.license %></div>
+    <div><%= design.instructions %></div>
+    <div><%= design.license %></div>
   </div>
 </container>
 <br><br>
 <div class="commentsSection">
-  <%if (user) {%>
+  <% if (user) {%>
   <form id="add-comment-form" method="POST" action="/designs/<%= design._id %>/comments">
     <label>Comments</label>
     <textarea name="content"></textarea>
@@ -50,7 +61,7 @@
             <td><%= c.content %></td>
             <td>
               <% if (user && user._id.equals(c.user)) { %>
-                <form action="/designs/<%= c._id %>?_method=DELETE" method="POST">
+                <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
                   <button type="submit">X</button>
                 </form>
               <% } %>

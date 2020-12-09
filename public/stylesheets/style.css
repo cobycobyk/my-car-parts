@@ -211,6 +211,11 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 20px;
+}
+.index-interactions {
+  display: flex;
+  align-items: center;
 }
 
 .userDesignsIndex {
@@ -224,10 +229,15 @@ footer {
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  width: 200px;
+  border: solid 2px #e65355;
+  height: 250px;
 }
-
+.onePart > div {
+  margin: 2px;
+}
 .onePart > .onePartImage img{
-  width: 80px;
+  width: 100px;
 }
 
 .showDesign {
@@ -271,6 +281,26 @@ footer {
   padding: 10px;
   margin-top: 10px;
 }
+.showDesignFavoriteDownload {
+  display: flex;
+  justify-content: center;
+}
+.showDesignFavoriteDownload > div {
+  align-self: center;
+}
+#favorite-design > button {
+  border: none;
+  background-color: transparent;
+  align-content: center;
+}
+#favorite-design > button > img {
+  width: 40px;
+  margin: 0 20px 0 20px;
+}
+.showDesignFavoriteDownload > img {
+  width: 40px;
+  margin: 0 20px 0 20px;
+}
 .commentsSection {
   grid-area: 4 / 2 / span all / 4;
 }
@@ -281,4 +311,52 @@ footer {
 }
 #add-comment-form > textarea {
   height: 100px;
+}
+#new-design {
+  grid-area: 1 / 2 / 4 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+#new-design > input {
+  width: 15rem;
+  height: 2rem;
+}
+#new-design > label {
+  padding: 3px;
+}
+
+#new-design > #save-design {
+  margin-top: 15px;
+  width: 8rem;
+  height: 3rem;
+  background-color: #e65355;
+}
+#edit-design {
+  grid-area: 1 / 2 / 4 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+#edit-design > input {
+  width: 15rem;
+  height: 2rem;
+}
+#edit-design > label {
+  padding: 3px;
+}
+
+#edit-design > #save-edit {
+  margin-top: 15px;
+  width: 8rem;
+  height: 3rem;
+  background-color: #e65355;
+}
+.deleteDesign > button {
+  margin-top: 15px;
+  width: 8rem;
+  height: 3rem;
+  background-color: #e65355;
 }

@@ -10,7 +10,7 @@
         <option value="Upgrade">Upgrade</option>
     </select>
     <label>Instructions</label>
-    <input type="text" name="instructions">
+    <textarea rows="10" cols="40" type="text" name="instructions"></textarea>
     <label>License (required)</label>
     <select name="license">
         <option value="Creative Commons - Attribution">Creative Commons - Attribution</option>
@@ -19,7 +19,7 @@
         <option value="Creative Commons - Attribution - Non-Commercial">Creative Commons - Attribution - Non-Commercial</option>
         <option value="Creative Commons - Public Domain Dedication">Creative Commons - Public Domain Dedication</option>
     </select>
-    <input type="submit" value="Add Design">
+    <input id="save-design" type="submit" value="Add Design">
   </form>
 
 <%- include('../partials/footer') %>

@@ -9,52 +9,51 @@ module.exports = {
     edit,
     update,
 };
- 
+
 function index(req, res) {
     res.redirect(`/users/show`);
 }
 
 function show(req, res) {
-    User.findById(req.user._id, function(err, user) {
-        if (err) return res.redirect('/design');
-        User.findById(req.params.id, function(err, designer) { 
-            Design
-                .find({designer: req.params.id})
-                .exec(function(err, designs) {
-                    res.render(`users/show`, {title: 'Profile', user, designer, designs});
-                    });
+    User.findById(req.params.id, function (err, designer) {
+        Design
+            .find({ designer: req.params.id })
+            .exec(function (err, designs) {
+                res.render(`users/show`, { title: 'Profile', designer, designs });
             });
     });
 };
 function favorite(req, res) {
-    User.findById(req.user._id, function(err, user) {
-        User.findById(req.params.id, function(err, designer) {
-            res.render(`users/favorites`, {title: 'Profile', user, designer});
+    User.findById(req.params.id, function (err, designer) {
+        Design.find({})
+            .populate('favorites')
+            .exec(function(err, designs) {
+                res.render(`users/favorites`, { title: 'Profile', designs, designer });
         })
     });
 };
 function cars(req, res) {
-    User.findById(req.user._id, function(err, user) {
-        User.findById(req.params.id, function(err, designer) {
-            res.render(`users/cars`, {title: 'Profile', user, designer});
+    User.findById(req.user._id, function (err, user) {
+        User.findById(req.params.id, function (err, designer) {
+            res.render(`users/cars`, { title: 'Profile', user, designer });
         })
     });
 };
 
 function edit(req, res) {
-    User.findById(req.user._id, function(err, user) {
+    User.findById(req.user._id, function (err, user) {
         res.render('users/edit', { title: 'Edit Profile', user });
     });
 };
 
 function update(req, res) {
-  User.findById(req.user._id, function(err, user) {
-    user.nickname = req.body.nickname; 
-    user.bio = req.body.bio;
-    user.instagram = req.body.instagram
-    user.save(function(err) {
-        res.redirect(`/users/${req.user._id}`);
+    User.findById(req.user._id, function (err, user) {
+        user.nickname = req.body.nickname;
+        user.bio = req.body.bio;
+        user.instagram = req.body.instagram
+        user.save(function (err) {
+            res.redirect(`/users/${req.user._id}`);
+        });
     });
-  });
 };
 

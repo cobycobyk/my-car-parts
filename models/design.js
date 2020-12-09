@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
     content: {type: String, required: true},
-    userId: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
@@ -14,11 +14,10 @@ const commentSchema = new Schema({
 });
 
 const favoriteSchema = new Schema({
-    userId: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
-    userName: String,
 }, {
     timestamps: true,
 });
@@ -35,7 +34,7 @@ const designSchema = new Schema({
     instructions: String,
     images: {
         type: String,
-        default: 'https://i.imgur.com/G1aC71Z.jpg',
+        default: 'https://i.imgur.com/wuuoBBA.png',
     },
     license: {
         type: String,

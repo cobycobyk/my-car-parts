@@ -6,13 +6,16 @@
   <div class="onePart">
     <div class="onePartImage"><img src="<%= d.images %>" alt="Part Image"></div>
     <div><a href="/designs/<%= d._id %>"><%= d.title %></a></div>
-    <div><%= d.category %></div>
-    <div><a href="/users/<%= d.designer %>"><%= d.designer %></a></div>
     <div><%= designer.name %></div>
-    <% let numFavorites = d.favorites.length %>
-    <div><%= numFavorites %></div>
-    <% let numComments = d.comments.length%>
-    <div><%= numComments %></div>
+    <div><%= d.category %></div>
+    <div class="index-interactions">
+      <% let numFavorites = d.favorites.length %>
+      <div> <%= numFavorites %> <img src="https://i.imgur.com/rZ2yCNk.png" alt="Like Icon" width="20"> </div>
+      <% let numComments = d.comments.length%>
+        &nbsp;&nbsp;
+      <div> <img src="https://i.imgur.com/2rlDJHf.png" alt="Comment Icon" width="20"> <%= numComments %> </div>
+    </div>
+  </div>
   </div>
   <% }); %>
 </containter>
